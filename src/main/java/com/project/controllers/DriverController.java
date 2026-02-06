@@ -42,7 +42,7 @@ public class DriverController {
 	 */
 	@PostMapping()
 	public ResponseEntity<Object> createDriver(@RequestBody @Valid DriverDTO dto) throws NotFoundException {
-		log.info("inside  driver  controller crating  driver");
+		log.info("inside  driver  controller crating a driver");
 		String msg = driverService.saveDriver(dto);
 		return new GenericResponseHandlers.Builder().setMessage(msg).setStatus(HttpStatus.CREATED).create();
 
@@ -67,7 +67,7 @@ public class DriverController {
 			@RequestParam(defaultValue = Constant.PAGE_SIZE) Integer pageSize, @RequestBody DriverFilterDTO dto) {
 		log.info("inside  filter driver controller");
 		Page<Driver> pages = driverService.filterDriver(pageNumber, pageSize, dto);
-		log.info("getting  outside  of the  get  drivers  filter  .");
+		log.info("getting  outside  of the  get list of  drivers  filter  .");
 		return new GenericResponseHandlers.Builder().setData(driverMapper.entityListToDtoList(pages.getContent()))
 				.setHasNextPage(pages.hasNext()).setHasPreviousPage(pages.hasPrevious()).setPageNumber(pageNumber)
 				.setTotalCount(pages.getTotalElements()).setPageSize((long) pageSize)
